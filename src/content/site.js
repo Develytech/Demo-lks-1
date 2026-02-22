@@ -16,7 +16,7 @@ export const siteContent = {
   },
   branding: {
     accentColor: '#ee9c21',
-    logoPath: '/src/assets/brand/logo.svg',
+    logoPath: '/public/assets/brand/logo.jpg',
     fontFamily: 'system',
   },
   layout: {
@@ -50,10 +50,11 @@ export const siteContent = {
     staggerMs: 90,
   },
   hero: {
-    imagePath: '/src/assets/brand/hero.jpg',
-    badge: 'Elinstallation • Ljusdesign • Styrsystem • Projektering',
-    headline: 'Elinstallationer av högsta kvalitet.',
-    subtext: 'För privatpersoner och företag i Stockholm med kranskommuner.',
+    imagePath: '/public/assets/brand/hero.jpg',
+    badge: 'ELINSTALLATION • LJUSDESIGN • STYRSYSTEM • PROJEKTERING',
+    headline: 'Elinstallationer med precision och känsla för detaljer.',
+    subtext: 'För privatpersoner och företag i Stockholm.',
+    subtextSecondary: 'Vi levererar säkra, genomtänkta och hållbara lösningar.',
     primaryAction: null,
     secondaryAction: {
       label: 'Kontakta oss',
@@ -122,3 +123,4 @@ export function resolveAssetPath(path) {
   }
   return path
 }
+

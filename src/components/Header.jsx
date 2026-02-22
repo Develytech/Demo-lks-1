@@ -1,22 +1,32 @@
 import { useScrollPosition } from '../hooks/useScrollPosition'
-import { resolveAssetPath } from '../content/site'
+
+const navLinks = [
+  { label: 'Tjänster', target: 'services' },
+  { label: 'Projekt', target: 'projects' },
+  { label: 'Kontakta oss', target: 'contact' },
+]
 
 function Header({ content, layoutUsage }) {
   const scrollY = useScrollPosition()
-  const isSolid = scrollY > 40
-  const { company, hero } = content
+  const isScrolled = scrollY > 80
+  const { company } = content
   const containerClass = `container container-${layoutUsage.width} gutter-${layoutUsage.gutter}`
 
+  const headerClass = `site-header ${isScrolled ? 'is-scrolled' : 'is-hero'}`
+
   return (
-    <header className={`site-header ${isSolid ? 'is-solid' : ''}`}>
+    <header className={headerClass}>
       <div className={`${containerClass} header-inner`}>
         <a href="#top" className="brand" aria-label={company.name}>
-          <img src={resolveAssetPath(content.branding.logoPath)} alt={company.name} className="brand-logo" />
           <span>{company.name}</span>
         </a>
-        <a href={`#${hero.secondaryAction.target}`} className="header-cta">
-          {hero.secondaryAction.label}
-        </a>
+        <nav className="header-nav" aria-label="Primär navigation">
+          {navLinks.map((link) => (
+            <a key={link.target} href={`#${link.target}`}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </header>
   )

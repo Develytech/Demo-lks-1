@@ -14,12 +14,14 @@ function Hero({ content, layoutUsage }) {
         <p className="hero-badge">{hero.badge}</p>
         <h1>{hero.headline}</h1>
         <p className="hero-subtext">{hero.subtext}</p>
+        {hero.subtextSecondary ? <p className="hero-subtext">{hero.subtextSecondary}</p> : null}
+        <p className="hero-tagline">{company.tagline}</p>
         {hero.secondaryAction && (
           <a href={`#${hero.secondaryAction.target}`} className="text-link">
             {hero.secondaryAction.label}
           </a>
         )}
-        <p className="hero-tagline">{company.tagline}</p>
+        
       </div>
     </section>
   )
