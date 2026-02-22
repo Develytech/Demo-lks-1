@@ -50,7 +50,7 @@ export const siteContent = {
     staggerMs: 90,
   },
   hero: {
-    imagePath: '/public/assets/brand/hero.jpg',
+    imagePath: '/assets/brand/hero.jpg',
     badge: 'ELINSTALLATION • LJUSDESIGN • STYRSYSTEM • PROJEKTERING',
     headline: 'Elinstallationer med precision och känsla för detaljer.',
     subtext: 'För privatpersoner och företag i Stockholm.',
