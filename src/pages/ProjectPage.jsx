@@ -1,5 +1,4 @@
-import { Helmet } from 'react-helmet-async'
-import { Link, useParams } from 'react-router-dom'
+﻿import { Link, useParams } from 'react-router-dom'
 import { projectsContent } from '../content/projects'
 import { resolveAssetPath, siteContent } from '../content/site'
 
@@ -26,7 +25,7 @@ function getProjectTags(project) {
 
   if (typeof project?.meta === 'string') {
     return project.meta
-      .split('•')
+      .split('â€¢')
       .map((tag) => tag.trim())
       .filter(Boolean)
   }
@@ -52,70 +51,56 @@ function ProjectPage() {
 
   if (!project) {
     return (
-      <>
-        <Helmet>
-          <title>Projekt hittades inte | {siteContent.company.name}</title>
-          <meta name="description" content="Projektet kunde inte hittas." />
-        </Helmet>
-        <main className="section projects">
-          <div className="container container-wide gutter-tight">
-            <h1>Projekt hittades inte</h1>
-            <p>
-              <Link to="/projects">Tillbaka till /projects</Link>
-            </p>
-          </div>
-        </main>
-      </>
+      <main className="section projects">
+        <div className="container container-wide gutter-tight">
+          <h1>Projekt hittades inte</h1>
+          <p>
+            <Link to="/projects">Tillbaka till /projects</Link>
+          </p>
+        </div>
+      </main>
     )
   }
 
   const longDescriptionParts = getLongDescriptionParts(project)
   const tags = getProjectTags(project)
   const image = getProjectImage(project)
-  const description = project.shortDescription || longDescriptionParts[0] || ''
 
   return (
-    <>
-      <Helmet>
-        <title>{project.title} | Ljus & Kraft Stockholm AB</title>
-        <meta name="description" content={description} />
-      </Helmet>
-      <main className="section projects">
-        <article className="container container-wide gutter-tight">
-          <header className="section-header projects-header">
-            <h1>{project.title}</h1>
-          </header>
+    <main className="section projects">
+      <article className="container container-wide gutter-tight">
+        <header className="section-header projects-header">
+          <h1>{project.title}</h1>
+        </header>
 
-          {image ? (
-            <figure className="project-media">
-              <img src={resolveAssetPath(image.src)} alt={image.alt || project.title} />
-            </figure>
-          ) : null}
+        {image ? (
+          <figure className="project-media">
+            <img src={resolveAssetPath(image.src)} alt={image.alt || project.title} />
+          </figure>
+        ) : null}
 
-          {tags.length > 0 ? (
-            <ul className="project-tags" role="list" aria-label="Projektkategorier">
-              {tags.map((tag) => (
-                <li key={`${project.id || project.title}-${tag}`}>{tag}</li>
-              ))}
-            </ul>
-          ) : null}
-
-          <div className="project-modal-text">
-            {longDescriptionParts.map((paragraph) => (
-              <p key={`${project.id || project.title}-${paragraph.slice(0, 32)}`}>{paragraph}</p>
+        {tags.length > 0 ? (
+          <ul className="project-tags" role="list" aria-label="Projektkategorier">
+            {tags.map((tag) => (
+              <li key={`${project.id || project.title}-${tag}`}>{tag}</li>
             ))}
-          </div>
+          </ul>
+        ) : null}
 
-          <p>
-            <Link className="project-modal-cta-button" to="/kontakt">
-              Kontakta oss
-            </Link>
-          </p>
-        </article>
-      </main>
-    </>
+        <div className="project-modal-text">
+          {longDescriptionParts.map((paragraph) => (
+            <p key={`${project.id || project.title}-${paragraph.slice(0, 32)}`}>{paragraph}</p>
+          ))}
+        </div>
+
+        <p>
+          <Link className="project-modal-cta-button" to="/kontakt">
+            Kontakta oss
+          </Link>
+        </p>
+      </article>
+    </main>
   )
 }
 
 export default ProjectPage
-
