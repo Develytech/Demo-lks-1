@@ -134,6 +134,13 @@ h3 {
   gap: 1rem;
 }
 
+.header-brand {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60vw;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -152,6 +159,57 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: clamp(0.9rem, 2vw, 1.8rem);
+}
+
+.header-hamburger {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.header-hamburger span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.site-header.is-hero .header-hamburger {
+  border-color: rgba(248, 250, 252, 0.45);
+}
+
+.site-header.is-scrolled .header-hamburger {
+  border-color: rgba(15, 23, 32, 0.2);
+}
+
+.header-mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.header-mobile-menu a {
+  color: #111111;
+  text-decoration: none;
+  padding: 0.55rem 0.25rem;
 }
 
 .header-nav a {
@@ -769,5 +827,15 @@ h3 {
 @media (max-width: 879px) {
   .project-modal-nav {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+
+  .header-hamburger {
+    display: inline-flex;
   }
 }
