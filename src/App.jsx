@@ -1,34 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Services from './components/Services'
+import Projects from './components/Projects'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import { siteContent } from './content/site'
+import { projectsContent } from './content/projects'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { branding, layout, layoutUsage, services, contactSection } = siteContent
+
+  const rootStyle = {
+    '--accent-color': branding.accentColor,
+    '--header-height': `${layout.headerHeightPx}px`,
+    '--radius': `${layout.borderRadiusPx}px`,
+    '--section-pad-mobile': `${layout.sectionPaddingYMobilePx}px`,
+    '--section-pad-desktop': `${layout.sectionPaddingYDesktopPx}px`,
+    '--gutter-tight': layout.gutterTight,
+    '--gutter-standard': layout.gutterStandard,
+    '--gutter-wide': layout.gutterWide,
+    '--container-standard-max': `${layout.containerMaxWidthPx}px`,
+    '--container-standard-fluid': `${layout.containerFluidVw}vw`,
+    '--container-wide-max': `${layout.wideContainerMaxWidthPx}px`,
+    '--container-wide-fluid': `${layout.wideContainerFluidVw}vw`,
+    '--container-narrow-max': `${layout.narrowContainerMaxWidthPx}px`,
+    '--container-narrow-fluid': `${layout.narrowContainerFluidVw}vw`,
+    '--motion-duration': `${siteContent.motion.durationMs}ms`,
+    '--motion-stagger': `${siteContent.motion.staggerMs}ms`,
+    '--header-transition': '180ms',
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="site" style={rootStyle}>
+      <Header content={siteContent} layoutUsage={layoutUsage.header} />
+      <main>
+        <Hero content={siteContent} layoutUsage={layoutUsage.hero} />
+        <Services content={services} layoutUsage={layoutUsage.services} />
+        <Projects content={projectsContent} layoutUsage={layoutUsage.projects} />
+        <Contact
+          company={siteContent.company}
+          contact={siteContent.contact}
+          content={contactSection}
+          layoutUsage={layoutUsage.contact}
+        />
+      </main>
+      <Footer content={siteContent.footer} company={siteContent.company} layoutUsage={layoutUsage.footer} />
+    </div>
   )
 }
 
