@@ -210,6 +210,10 @@ h3 {
   color: #111111;
   text-decoration: none;
   padding: 0.55rem 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--header-transition) ease,
+    color var(--header-transition) ease;
 }
 
 .header-nav a {
@@ -237,6 +241,19 @@ h3 {
 
 .site-header.is-scrolled .header-nav a:hover {
   border-bottom-color: color-mix(in srgb, var(--accent-color), #111827 65%);
+}
+
+.header-nav a.active {
+  border-bottom-color: color-mix(in srgb, var(--accent-color), #0f172a 58%);
+}
+
+.site-header.is-hero .header-nav a.active {
+  border-bottom-color: rgba(248, 250, 252, 0.98);
+}
+
+.header-mobile-menu a.active {
+  color: #0f1720;
+  border-bottom-color: color-mix(in srgb, var(--accent-color), #0f172a 58%);
 }
 
 .hero {
@@ -333,6 +350,139 @@ h3 {
 
 .services {
   background: #ffffff;
+}
+
+.about {
+  background: #f1f5f9;
+  padding-block: calc(var(--section-pad-mobile) + 10px);
+}
+
+.about-grid {
+  display: grid;
+  gap: clamp(1.1rem, 2.2vw, 1.8rem);
+}
+
+.about-media-placeholder {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 16 / 10;
+  min-height: 196px;
+  border-radius: calc(var(--radius) + 8px);
+  border: 1px solid #d7dee6;
+  background: #e8edf2;
+  box-shadow: 0 16px 34px rgba(15, 23, 32, 0.09);
+  overflow: hidden;
+}
+
+.about-media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-media-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 32, 0.12) 0%,
+    rgba(15, 23, 32, 0.07) 28%,
+    rgba(15, 23, 32, 0.02) 52%,
+    rgba(15, 23, 32, 0) 74%
+  );
+  pointer-events: none;
+}
+
+.about-media-content {
+  position: absolute;
+  left: 0.95rem;
+  right: 0.95rem;
+  bottom: 0.7rem;
+  z-index: 2;
+  max-width: min(92%, 380px);
+  padding: 0.82rem 0.98rem;
+  border-radius: calc(var(--radius) + 3px);
+  border: 1px solid rgba(226, 232, 240, 0.55);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 20px rgba(15, 23, 32, 0.12);
+  backdrop-filter: blur(4px);
+}
+
+.about-media-content p:first-child {
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #334155;
+}
+
+.about-media-content p:last-child {
+  margin-top: 0.3rem;
+  font-size: 0.84rem;
+  color: #0f172a;
+}
+
+.about-overline {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.about-copy h2 {
+  margin-top: 0.55rem;
+  font-size: clamp(1.85rem, 2.5vw, 2.75rem);
+}
+
+.about-copy p {
+  margin-top: 0.75rem;
+  max-width: 62ch;
+  line-height: 1.62;
+  color: #334155;
+}
+
+.about-trust-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.about-trust-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #1e293b;
+}
+
+.about-trust-list li::before {
+  content: '✓';
+  color: color-mix(in srgb, var(--accent-color), #0f1720 30%);
+  font-weight: 700;
+}
+
+.about-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.45rem;
+  min-height: 2.45rem;
+  border: 1px solid #1e293b;
+  border-radius: calc(var(--radius) + 2px);
+  padding: 0.55rem 0.98rem;
+  text-decoration: none;
+  color: #1e293b;
+  transition:
+    background-color var(--header-transition) ease,
+    border-color var(--header-transition) ease,
+    color var(--header-transition) ease;
+}
+
+.about-cta:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: #f8fafc;
 }
 
 .services-list {
@@ -698,7 +848,8 @@ h3 {
 .contact-form textarea:focus-visible,
 .contact-form button:focus-visible,
 .header-nav a:focus-visible,
-.text-link:focus-visible {
+.text-link:focus-visible,
+.about-cta:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
@@ -759,6 +910,10 @@ h3 {
     padding-block: var(--section-pad-desktop);
   }
 
+  .about {
+    padding-block: calc(var(--section-pad-desktop) + 14px);
+  }
+
   .hero-content {
     max-width: 980px;
   }
@@ -769,6 +924,21 @@ h3 {
 
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(1.4rem, 2.8vw, 2.4rem);
+  }
+
+  .about-copy {
+    order: 1;
+  }
+
+  .about-media {
+    order: 2;
+    padding-top: 0.45rem;
   }
 
   .project-modal {

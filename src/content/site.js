@@ -39,6 +39,7 @@ export const siteContent = {
   layoutUsage: {
     header: { width: 'wide', gutter: 'tight' },
     hero: { width: 'standard', gutter: 'wide' },
+    about: { width: 'standard', gutter: 'standard' },
     services: { width: 'standard', gutter: 'standard' },
     projects: { width: 'wide', gutter: 'tight' },
     contact: { width: 'standard', gutter: 'standard' },
@@ -57,6 +58,27 @@ export const siteContent = {
     subtextSecondary: 'Vi levererar säkra, genomtänkta och hållbara lösningar.',
     primaryAction: null,
     secondaryAction: {
+      label: 'Kontakta oss',
+      target: 'contact',
+    },
+  },
+  aboutSection: {
+    overline: 'Om oss – Elektriker i Stockholm',
+    heading: 'En trygg elpartner i Stockholm',
+    // Replace this path with a dedicated "Om oss" image when available.
+    imagePath: '/assets/about/elektriker-installation-stockholm.jpg',
+    imageAlt: 'Elektriker i arbete i Stockholm',
+    paragraphs: [
+      'Vi hjälper privatpersoner, BRF:er och företag i Stockholm med allt från servicejobb till större installationer. Du får tydlig dialog, väl utfört arbete och lösningar som håller över tid, oavsett uppdragets storlek.',
+      'Vi arbetar tryggt i både äldre fastigheter och nyproduktion. Med noggrann planering, säker installation och tydlig dokumentation skapar vi ett slutresultat som fungerar i vardagen och ser professionellt ut.',
+      'Snabb återkoppling och transparent prissättning är en självklarhet. Du får en tydlig offert, en ansvarig kontaktperson och uppföljning från start till färdig leverans.',
+    ],
+    trustPoints: [
+      'Auktoriserade & certifierade elektriker',
+      'Tydlig offert – inga överraskningar',
+      'Återkoppling inom 24h',
+    ],
+    cta: {
       label: 'Kontakta oss',
       target: 'contact',
     },
@@ -123,4 +145,3 @@ export function resolveAssetPath(path) {
   }
   return path
 }
-

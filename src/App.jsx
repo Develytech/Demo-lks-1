@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
+import OmOss from './components/OmOss'
 import Services from './components/Services'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
@@ -8,7 +9,7 @@ import { siteContent } from './content/site'
 import { projectsContent } from './content/projects'
 
 function App() {
-  const { branding, layout, layoutUsage, services, contactSection } = siteContent
+  const { branding, layout, layoutUsage, aboutSection, services, contactSection } = siteContent
 
   const rootStyle = {
     '--accent-color': branding.accentColor,
@@ -35,6 +36,7 @@ function App() {
       <Header content={siteContent} layoutUsage={layoutUsage.header} />
       <main>
         <Hero content={siteContent} layoutUsage={layoutUsage.hero} />
+        <OmOss content={aboutSection} layoutUsage={layoutUsage.about} />
         <Services content={services} layoutUsage={layoutUsage.services} />
         <Projects content={projectsContent} layoutUsage={layoutUsage.projects} />
         <Contact
